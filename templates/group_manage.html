@@ -8,24 +8,4 @@
     {% endfor %}
 </div>
 
-<div>
-<form action="add_group" method="post">
-    <label for="group_name">Name</label>
-    <input type="text" name="group_name" id="group_name">
-
-    <input type="submit" value="ADD">
-</form>
-</div>
-
-<div>
-<form action="delete_group" method="post">
-    <select name="delete_selected">
-        {% for group in list_of_group %}
-            <option>{{group}}</option>
-        {% endfor %}
-    </select>
-    <input type="submit" value="Delete">
-</form>
-</div>
-
 {% endblock %}

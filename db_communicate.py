@@ -1,9 +1,9 @@
-from . database import *
+from .database import *
+from . import login_manager
 
 
-def add_new_group(name):
-    group = Group(name=name)
-    session.add(group)
+def add_new_item(obj):
+    session.add(obj)
     session.commit()
 
 
@@ -25,3 +25,12 @@ def get_student_in_group(group):
     list_of_students = session.query(Student).where(Student.group == group_id).all()
     list_of_students_names = [i.name for i in list_of_students]
     return list_of_students_names
+
+
+def check_if_user_exist_by(username):
+    return session.query(User).where(User.name == username).first()
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return session.query(User).get(int(user_id))
